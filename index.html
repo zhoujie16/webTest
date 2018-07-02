@@ -13,7 +13,7 @@
 		<script src="https://cdn.bootcss.com/crypto-js/3.1.9/aes.js"></script>
 		<script src="https://cdn.bootcss.com/crypto-js/3.1.9/hmac.js"></script>
 		<script src="https://cdn.bootcss.com/crypto-js/3.1.9/sha1.js"></script>
-		<script src="https://cdn.bootcss.com/crypto-js/3.1.9/sha256.js"></script> 
+		<script src="https://cdn.bootcss.com/crypto-js/3.1.9/sha256.js"></script>
 	</head>
 
 	<body>
@@ -29,9 +29,15 @@
 		var sig = CryptoJS.HmacSHA1(str, KEY).toString(CryptoJS.enc.Base64);
 		str = str + "&sig=" + sig;
 		console.log(str)
-		var url = API +"?location="+LOCATION+"&"+str+"&callback=showWeather";
+		var url = API + "?location=" + LOCATION + "&" + str + "&callback=showWeather";
 		console.log(url)
+		var script = document.createElement('script');
+		script.setAttribute('src', url);
+		// 把script标签加入head，此时调用开始 
+		document.getElementsByTagName('head')[0].appendChild(script);
+		function showWeather(data){
+			console.log(data)
+		}
 	</script>
-	<script src="https://api.seniverse.com/v3/weather/now.json?location=Kaifeng&ts=1530499193&uid=U0C17AEC1A&sig=6gSBAIaVVX6CccycIGoTW8lt2oE=&callback=showWeather" type="text/javascript" charset="utf-8"></script>
 
 </html>
