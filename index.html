@@ -21,6 +21,16 @@
 	<!--<script src="https://api.seniverse.com/v3/weather/now.json?key=hgi49hrigzfgqghg&location=tongling&callback=sss" type="text/javascript" charset="utf-8"></script>-->
 	<script type="text/javascript">
 		(function() {
+			window.showWeather = function(d) {
+				console.log(JSON.stringify(d))
+				var data = d.results[0];
+				var htm = '<div class="address">铜陵 </div>' +
+					'<div class="">空气质量：良</div>' +
+					'<div class="">今天(' + getWeek() + ')</div>' +
+					'<div class="">' + data.now.temperature + '℃</div>' +
+					'<div class="">' + data.now.text + '</div>';
+				console.log(htm)
+			}
 			var UID = 'U0C17AEC1A';
 			var KEY = 'hgi49hrigzfgqghg';
 			var API = "https://api.seniverse.com/v3/weather/now.json";
@@ -37,16 +47,7 @@
 			// 把script标签加入head，此时调用开始 
 			document.getElementsByTagName('head')[0].appendChild(script);
 
-			function showWeather(d) {
-				console.log(JSON.stringify(d))
-				var data = d.results[0];
-				var htm = '<div class="address">铜陵 </div>' +
-					'<div class="">空气质量：良</div>' +
-					'<div class="">今天(' + getWeek() + ')</div>' +
-					'<div class="">' + data.now.temperature + '℃</div>' +
-					'<div class="">' + data.now.text + '</div>';
-				console.log(htm)
-			}
+			
 
 			function getWeek() {
 				var mydate = new Date();
