@@ -23,7 +23,7 @@
 		var UID = 'U0C17AEC1A';
 		var KEY = 'hgi49hrigzfgqghg';
 		var API = "https://api.seniverse.com/v3/weather/now.json";
-		var LOCATION = "Kaifeng";
+		var LOCATION = "tongling";
 		var ts = Math.floor((new Date()).getTime() / 1000);
 		var str = "ts=" + ts + "&uid=" + UID;
 		var sig = CryptoJS.HmacSHA1(str, KEY).toString(CryptoJS.enc.Base64);
@@ -35,8 +35,15 @@
 		script.setAttribute('src', url);
 		// 把script标签加入head，此时调用开始 
 		document.getElementsByTagName('head')[0].appendChild(script);
-		function showWeather(data){
-			console.log(data)
+		function showWeather(d){
+			console.log(JSON.stringify(d))
+//			var data = d.results[0];
+//			var add = data.location.name;
+//			'<div class="address">'铜陵'</div>'
+//      	'<div class="">空气质量：良</div>'
+//      	'<div class="">今天<!--（周二）--></div>'
+//      	'<div class="">20-29℃</div>'
+//      	'<div class="">阴</div>'
 		}
 	</script>
 
