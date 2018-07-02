@@ -20,39 +20,41 @@
 	</body>
 	<!--<script src="https://api.seniverse.com/v3/weather/now.json?key=hgi49hrigzfgqghg&location=tongling&callback=sss" type="text/javascript" charset="utf-8"></script>-->
 	<script type="text/javascript">
-		var UID = 'U0C17AEC1A';
-		var KEY = 'hgi49hrigzfgqghg';
-		var API = "https://api.seniverse.com/v3/weather/now.json";
-		var LOCATION = "tongling";
-		var ts = Math.floor((new Date()).getTime() / 1000);
-		var str = "ts=" + ts + "&uid=" + UID;
-		var sig = CryptoJS.HmacSHA1(str, KEY).toString(CryptoJS.enc.Base64);
-		str = str + "&sig=" + sig;
-		console.log(str)
-		var url = API + "?location=" + LOCATION + "&" + str + "&callback=showWeather";
-		console.log(url)
-		var script = document.createElement('script');
-		script.setAttribute('src', url);
-		// 把script标签加入head，此时调用开始 
-		document.getElementsByTagName('head')[0].appendChild(script);
+		function() {
+			var UID = 'U0C17AEC1A';
+			var KEY = 'hgi49hrigzfgqghg';
+			var API = "https://api.seniverse.com/v3/weather/now.json";
+			var LOCATION = "tongling";
+			var ts = Math.floor((new Date()).getTime() / 1000);
+			var str = "ts=" + ts + "&uid=" + UID;
+			var sig = CryptoJS.HmacSHA1(str, KEY).toString(CryptoJS.enc.Base64);
+			str = str + "&sig=" + sig;
+			console.log(str)
+			var url = API + "?location=" + LOCATION + "&" + str + "&callback=showWeather";
+			console.log(url)
+			var script = document.createElement('script');
+			script.setAttribute('src', url);
+			// 把script标签加入head，此时调用开始 
+			document.getElementsByTagName('head')[0].appendChild(script);
 
-		function showWeather(d) {
-			console.log(JSON.stringify(d))
-			var data = d.results[0];
-			var htm = '<div class="address">铜陵 </div>' +
-				'<div class="">空气质量：良</div>' +
-				'<div class="">今天(' + getWeek() + ')</div>' +
-				'<div class="">' + data.now.temperature + '</div>' +
-				'<div class="">' + data.now.text + '</div>';
-			console.log(htm)
-		}
+			function showWeather(d) {
+				console.log(JSON.stringify(d))
+				var data = d.results[0];
+				var htm = '<div class="address">铜陵 </div>' +
+					'<div class="">空气质量：良</div>' +
+					'<div class="">今天(' + getWeek() + ')</div>' +
+					'<div class="">' + data.now.temperature + '℃</div>' +
+					'<div class="">' + data.now.text + '</div>';
+				console.log(htm)
+			}
 
-		function getWeek() {
-			var mydate = new Date();
-			var myddy = mydate.getDay(); //获取存储当前日期
-			var weekday = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
-			return weekday[myddy];
-		}
+			function getWeek() {
+				var mydate = new Date();
+				var myddy = mydate.getDay(); //获取存储当前日期
+				var weekday = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
+				return weekday[myddy];
+			}
+		}();
 	</script>
 
 </html>
