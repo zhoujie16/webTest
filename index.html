@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script src="https://cdn.bootcss.com/crypto-js/3.1.9/core.js"></script>
+		<script src="https://cdn.bootcss.com/crypto-js/3.1.9/md5.js"></script>
+		<script src="https://cdn.bootcss.com/crypto-js/3.1.9/evpkdf.js"></script>
+		<script src="https://cdn.bootcss.com/crypto-js/3.1.9/enc-base64.js"></script>
+		<script src="https://cdn.bootcss.com/crypto-js/3.1.9/cipher-core.js"></script>
+		<script src="https://cdn.bootcss.com/crypto-js/3.1.9/aes.js"></script>
+		<script src="https://cdn.bootcss.com/crypto-js/3.1.9/hmac.js"></script>
+		<script src="https://cdn.bootcss.com/crypto-js/3.1.9/sha1.js"></script>
+		<script src="https://cdn.bootcss.com/crypto-js/3.1.9/sha256.js"></script> 
+	</head>
+
+	<body>
+	</body>
+	<!--<script src="https://api.seniverse.com/v3/weather/now.json?key=hgi49hrigzfgqghg&location=tongling&callback=sss" type="text/javascript" charset="utf-8"></script>-->
+	<script type="text/javascript">
+		var UID = 'U0C17AEC1A';
+		var KEY = 'hgi49hrigzfgqghg';
+		var API = "https://api.seniverse.com/v3/weather/now.json";
+		var LOCATION = "Kaifeng";
+		var ts = Math.floor((new Date()).getTime() / 1000);
+		var str = "ts=" + ts + "&uid=" + UID;
+		var sig = CryptoJS.HmacSHA1(str, KEY).toString(CryptoJS.enc.Base64);
+		str = str + "&sig=" + sig;
+		console.log(str)
+		var url = API +"?location="+LOCATION+"&"+str+"&callback=showWeather";
+		console.log(url)
+	</script>
+	<script src="https://api.seniverse.com/v3/weather/now.json?location=Kaifeng&ts=1530499193&uid=U0C17AEC1A&sig=6gSBAIaVVX6CccycIGoTW8lt2oE=&callback=showWeather" type="text/javascript" charset="utf-8"></script>
+
+</html>
