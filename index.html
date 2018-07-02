@@ -35,15 +35,23 @@
 		script.setAttribute('src', url);
 		// 把script标签加入head，此时调用开始 
 		document.getElementsByTagName('head')[0].appendChild(script);
-		function showWeather(d){
+
+		function showWeather(d) {
 			console.log(JSON.stringify(d))
-//			var data = d.results[0];
-//			var add = data.location.name;
-//			'<div class="address">'铜陵'</div>'
-//      	'<div class="">空气质量：良</div>'
-//      	'<div class="">今天<!--（周二）--></div>'
-//      	'<div class="">20-29℃</div>'
-//      	'<div class="">阴</div>'
+			var data = d.results[0];
+			var htm = '<div class="address">铜陵 </div>' +
+				'<div class="">空气质量：良</div>' +
+				'<div class="">今天(' + getWeek() + ')</div>' +
+				'<div class="">' + data.now.temperature + '</div>' +
+				'<div class="">' + data.now.text + '</div>';
+			console.log(htm)
+		}
+
+		function getWeek() {
+			var mydate = new Date();
+			var myddy = mydate.getDay(); //获取存储当前日期
+			var weekday = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+			return weekday[myddy];
 		}
 	</script>
 
